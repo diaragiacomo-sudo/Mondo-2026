@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { AlertCircle } from "lucide-react";
 
 const NEWS_MESSAGES = [
-  "FLIGHT FL8234 ENCOUNTERING TURBULENCE OVER NORTH ATLANTIC",
-  "CARGO VESSEL SS MIL-SIN DELAYED DUE TO WEATHER IN SUEZ CANAL",
-  "NEW RECORD SET FOR LONGEST COMMERCIAL FLIGHT: LON-SYD",
-  "GLOBAL AIR TRAFFIC UP 12% IN LAST 24 HOURS",
-  "PORT OF TOKYO UPGRADING TO QUANTUM LOGISTICS SYSTEM",
-  "DUBAI HUB EXPANSION: NEW TERMINAL 4 OPENING SOON",
-  "SOLAR STORM DETECTED: MINOR NAVIGATION INTERFERENCE POSSIBLE",
+  "VOLO FL8234: TURBOLENZA RILEVATA SUL NORD ATLANTICO",
+  "NAVE CARGO SS MIL-SIN: RITARDO PER MALTEMPO NEL CANALE DI SUEZ",
+  "NUOVO RECORD: VOLO COMMERCIALE PIÙ LUNGO LONDRA-SYDNEY",
+  "TRAFFICO AEREO GLOBALE: +12% NELLE ULTIME 24 ORE",
+  "PORTO DI TOKYO: AGGIORNAMENTO SISTEMA LOGISTICO QUANTISTICO",
+  "HUB DUBAI: APERTURA NUOVO TERMINAL 4 IMMINENTE",
+  "TEMPESTA SOLARE: POSSIBILI LIEVI INTERFERENZE ALLA NAVIGAZIONE",
 ];
 
 const NewsTicker: React.FC = () => {
@@ -26,7 +26,7 @@ const NewsTicker: React.FC = () => {
       <div className="glass px-6 py-2 rounded-full flex items-center gap-4 overflow-hidden border-neon-blue/20">
         <div className="flex items-center gap-2 text-neon-blue shrink-0">
           <AlertCircle size={14} className="animate-pulse" />
-          <span className="text-[10px] font-bold uppercase tracking-widest">Network Alert</span>
+          <span className="text-[10px] font-bold uppercase tracking-widest">Avviso di Rete</span>
         </div>
         <div className="h-4 w-[1px] bg-glass shrink-0"></div>
         <div className="relative flex-1 h-4 overflow-hidden">

@@ -9,10 +9,10 @@ interface StatsPanelProps {
 
 const StatsPanel: React.FC<StatsPanelProps> = ({ flightCount, shipCount }) => {
   const stats = [
-    { label: "Flights Tracking", value: "14,291", detail: "+12.4% PEAK", detailColor: "text-emerald-400" },
-    { label: "Active Vessels", value: "8,402", detail: "NORMAL FLOW", detailColor: "text-slate-500" },
-    { label: "Current Conditions", value: "Clear", detail: "STATION 04A-TX", detailColor: "text-slate-500" },
-    { label: "Network Status", value: "SYNCED", detail: "LATENCY 14MS", detailColor: "text-slate-500", valueColor: "text-neon-blue" },
+    { label: "Voli Monitorati", value: "14.291", detail: "+12.4% PICCO", detailColor: "text-emerald-400" },
+    { label: "Navi Attive", value: "8.402", detail: "FLUSSO NORMALE", detailColor: "text-slate-500" },
+    { label: "Condizioni Meteo", value: "Sereno", detail: "STAZIONE 04A-TX", detailColor: "text-slate-500" },
+    { label: "Stato Rete", value: "SINCRONIZZATO", detail: "LATENZA 14MS", detailColor: "text-slate-500", valueColor: "text-neon-blue" },
   ];
 
   return (

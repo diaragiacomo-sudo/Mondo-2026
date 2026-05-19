@@ -43,7 +43,8 @@ async function startServer() {
   app.post("/api/insight", async (req, res) => {
     try {
       const { entityName, from, to, type } = req.body;
-      const prompt = `Generate a very short, realistic, and futuristic flight/maritime report for ${type} ${entityName} traveling from ${from} to ${to}. Mention weather, current speed, and a creative update (e.g., automated maintenance complete, minor delay due to solar wind, etc.). Keep it under 60 words.`;
+      const vehicleType = type === "FLIGHT" ? "volo" : "nave";
+      const prompt = `Genera un report molto breve, realistico e futuristico per il ${vehicleType} ${entityName} in viaggio da ${from} a ${to}. Menziona il meteo, la velocità attuale e un aggiornamento creativo (es. manutenzione automatizzata completata, lieve ritardo a causa del vento solare, ecc.). Scrivi esclusivamente in italiano. Massimo 60 parole.`;
       
       const response = await ai.models.generateContent({
         model: "gemini-3-flash-preview",
@@ -53,7 +54,7 @@ async function startServer() {
       res.json({ report: response.text });
     } catch (error) {
       console.error("Gemini Error:", error);
-      res.status(500).json({ error: "Failed to generate insight" });
+      res.status(500).json({ error: "Connessione alla rete neurale fallita." });
     }
   });
 

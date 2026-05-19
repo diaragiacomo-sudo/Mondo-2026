@@ -9,12 +9,12 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
   const menuItems = [
-    { id: "explore", icon: Search, label: "Explore" },
-    { id: "flights", icon: Plane, label: "Air Traffic" },
-    { id: "maritime", icon: Ship, label: "Maritime" },
-    { id: "stats", icon: Activity, label: "Real-time Stats" },
-    { id: "history", icon: History, label: "Travel History" },
-    { id: "settings", icon: Settings, label: "Settings" },
+    { id: "explore", icon: Search, label: "Esplora" },
+    { id: "flights", icon: Plane, label: "Traffico Aereo" },
+    { id: "maritime", icon: Ship, label: "Marittimo" },
+    { id: "stats", icon: Activity, label: "Statistiche" },
+    { id: "history", icon: History, label: "Cronologia" },
+    { id: "settings", icon: Settings, label: "Impostazioni" },
   ];
 
   return (

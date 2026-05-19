@@ -67,7 +67,7 @@ export default function App() {
       setAiInsight(data.report);
     } catch (err) {
       console.error(err);
-      setAiInsight("Failed to connect to global intelligence grid.");
+      setAiInsight("Connessione alla rete di intelligence globale fallita.");
     } finally {
       setIsGenerating(false);
     }
@@ -126,7 +126,7 @@ export default function App() {
               <Search className="text-slate-400 group-focus-within:text-neon-blue" size={20} />
               <input 
                 type="text" 
-                placeholder="Search city, flight number or vessel..."
+                placeholder="Cerca città, numero volo o nave..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="bg-transparent border-none focus:ring-0 text-sm ml-3 flex-1 placeholder:text-slate-500 text-white outline-none"
@@ -181,7 +181,7 @@ export default function App() {
           <div className="flex flex-col h-full max-w-sm pointer-events-auto mt-24">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-2 h-2 rounded-full bg-neon-blue shadow-[0_0_10px_rgba(6,182,212,0.5)]"></div>
-              <h2 className="text-[11px] font-bold tracking-[0.2em] uppercase text-slate-400">Live Traffic Feed</h2>
+              <h2 className="text-[11px] font-bold tracking-[0.2em] uppercase text-slate-400">Traffico in Diretta</h2>
             </div>
             <div className="flex-1 flex flex-col gap-3 overflow-y-auto pr-2 custom-scrollbar">
               {entities.map(entity => (
@@ -199,7 +199,7 @@ export default function App() {
                          {entity.name}
                        </span>
                     </div>
-                    <span className="text-[9px] text-slate-500 font-bold uppercase tracking-tighter">{entity.status}</span>
+                    <span className="text-[9px] text-slate-500 font-bold uppercase tracking-tighter">{entity.status === 'en-route' ? 'IN VIAGGIO' : 'ARRIVATO'}</span>
                   </div>
                   
                   <div className="flex items-center gap-3 mb-2">
@@ -225,7 +225,7 @@ export default function App() {
           <section className="bg-slate-900/80 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 shadow-2xl">
             <div className="flex justify-between items-center mb-6">
               <span className="px-2 py-1 bg-neon-blue/20 text-neon-blue text-[10px] font-bold rounded border border-neon-blue/30 uppercase">
-                {selectedEntity.type === TransportType.FLIGHT ? 'Flight' : 'Vessel'} {selectedEntity.name}
+                {selectedEntity.type === TransportType.FLIGHT ? 'Volo' : 'Nave'} {selectedEntity.name}
               </span>
               <button onClick={() => setSelectedEntity(null)} className="text-slate-500 hover:text-white transition-colors">
                 <Maximize size={16} className="rotate-45" />
@@ -252,15 +252,15 @@ export default function App() {
 
             <div className="grid grid-cols-2 gap-4 border-t border-slate-800/50 pt-6 mb-6">
               <div>
-                <p className="text-[10px] text-slate-500 uppercase font-bold mb-1">Speed</p>
-                <p className="text-sm font-mono text-neon-blue">{Math.round(selectedEntity.speed)} {selectedEntity.type === TransportType.FLIGHT ? 'KTS' : 'KN'}</p>
+                <p className="text-[10px] text-slate-500 uppercase font-bold mb-1">Velocità</p>
+                <p className="text-sm font-mono text-neon-blue">{Math.round(selectedEntity.speed)} {selectedEntity.type === TransportType.FLIGHT ? 'KM/H' : 'NODI'}</p>
               </div>
               <div>
                 <p className="text-[10px] text-slate-500 uppercase font-bold mb-1">
-                  {selectedEntity.type === TransportType.FLIGHT ? 'Altitude' : 'Progress'}
+                  {selectedEntity.type === TransportType.FLIGHT ? 'Altitudine' : 'Progresso'}
                 </p>
                 <p className="text-sm font-mono text-neon-blue">
-                  {selectedEntity.type === TransportType.FLIGHT ? `${Math.round(selectedEntity.altitude! / 0.3048).toLocaleString()} FT` : `${Math.round(selectedEntity.progress * 100)}%`}
+                  {selectedEntity.type === TransportType.FLIGHT ? `${Math.round(selectedEntity.altitude!).toLocaleString()} M` : `${Math.round(selectedEntity.progress * 100)}%`}
                 </p>
               </div>
             </div>
@@ -268,7 +268,7 @@ export default function App() {
             {aiInsight ? (
               <div className="p-4 bg-slate-950/50 rounded-xl border border-slate-800/50 text-[10px] leading-relaxed text-slate-400 font-mono mb-6">
                 <div className="text-neon-blue mb-2 font-bold uppercase tracking-wider flex items-center gap-2">
-                  <Activity size={12} /> AI Analysis Log
+                  <Activity size={12} /> Analisi Intelligenza Global
                 </div>
                 {aiInsight}
               </div>
@@ -278,7 +278,7 @@ export default function App() {
                 onClick={() => getAiInsight(selectedEntity)}
                 className="w-full py-3 rounded-xl bg-neon-blue/80 hover:bg-neon-blue text-white font-bold text-xs uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)] disabled:opacity-50"
               >
-                {isGenerating ? "Analyzing Signals..." : "Initialize AI Intelligence"}
+                {isGenerating ? "Analisi Segnali in Corso..." : "Inizializza Intelligence AI"}
               </button>
             )}
           </section>
@@ -286,8 +286,8 @@ export default function App() {
           {/* Mini HUD element below the card */}
           <div className="bg-slate-900/60 backdrop-blur-md border border-slate-800 rounded-xl p-4 flex justify-between items-center">
              <div>
-                <p className="text-[9px] text-slate-500 uppercase font-bold mb-1 tracking-tighter">Status Report</p>
-                <p className="text-xs font-bold text-emerald-400 uppercase tracking-widest">Normal Operations</p>
+                <p className="text-[9px] text-slate-500 uppercase font-bold mb-1 tracking-tighter">Report di Stato</p>
+                <p className="text-xs font-bold text-emerald-400 uppercase tracking-widest">Operazioni Normali</p>
              </div>
              <Activity className="text-slate-700" size={24} />
           </div>
@@ -297,8 +297,8 @@ export default function App() {
       {/* Bottom HUD elements replaced by StatsPanel, adding smaller localized ones */}
       <div className="absolute bottom-10 left-32 flex gap-4 z-40 pointer-events-auto">
         <div className="flex gap-2 bg-slate-900/80 backdrop-blur-md p-1.5 rounded-xl border border-slate-800">
-          <button className="px-4 py-2 bg-slate-800/80 hover:bg-slate-700 text-[10px] font-bold rounded-lg border border-slate-700 text-slate-400 uppercase tracking-widest transition-all">2D View</button>
-          <button className="px-4 py-2 bg-neon-blue text-white text-[10px] font-bold rounded-lg shadow-[0_0_15px_rgba(6,182,212,0.3)] uppercase tracking-widest">3D Globe</button>
+          <button className="px-4 py-2 bg-slate-800/80 hover:bg-slate-700 text-[10px] font-bold rounded-lg border border-slate-700 text-slate-400 uppercase tracking-widest transition-all">Vista 2D</button>
+          <button className="px-4 py-2 bg-neon-blue text-white text-[10px] font-bold rounded-lg shadow-[0_0_15px_rgba(6,182,212,0.3)] uppercase tracking-widest">Globo 3D</button>
         </div>
       </div>
     </div>
