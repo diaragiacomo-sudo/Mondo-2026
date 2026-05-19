@@ -1,0 +1,6 @@
+{
+  "name": "GeoStream Ultra",
+  "description": "A high-performance interactive 3D globe for real-time monitoring of global air and maritime traffic with futuristic visualization.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
